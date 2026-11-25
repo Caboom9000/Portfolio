@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Callum Drumm — Computer Science student portfolio showcasing projects, technical skills, and experience.">
+	<title>Callum Drumm | Computer Science Portfolio</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #17211d;
+			--muted: #59665f;
+			--paper: #f7f8f4;
+			--surface: #fff;
+			--green: #176b50;
+			--green-dark: #10513c;
+			--lime: #d7edb4;
+			--line: #e2e8df;
+			--shadow: 0 16px 42px rgba(24, 48, 37, .08);
+		}
+		*, *::before, *::after { box-sizing: border-box; }
+		html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+		body {
+			margin: 0;
+			background: var(--paper);
+			color: var(--ink);
+			font: 16px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+		}
+		a { color: var(--green); }
+		a:focus-visible { outline: 3px solid #a3c96d; outline-offset: 4px; border-radius: 3px; }
+		.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 10; padding: .7rem 1rem; background: var(--surface); }
+		.skip-link:focus { top: 1rem; }
+		.wrap { width: min(1100px, calc(100% - 2.5rem)); margin-inline: auto; }
+		header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: rgba(247, 248, 244, .94); backdrop-filter: blur(12px); }
+		.nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+		.brand { color: var(--ink); font-weight: 800; text-decoration: none; letter-spacing: -.03em; }
+		nav ul { display: flex; align-items: center; gap: clamp(.8rem, 2.5vw, 1.7rem); margin: 0; padding: 0; list-style: none; }
+		nav a { color: var(--muted); font-size: .92rem; font-weight: 650; text-decoration: none; }
+		nav a:hover, nav a[aria-current="page"] { color: var(--green); }
+		.hero { padding: clamp(4.5rem, 10vw, 8rem) 0 5rem; background: radial-gradient(ellipse at 85% 22%, rgba(215,237,180,.55), transparent 34%); }
+		.eyebrow { color: var(--green); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+		h1, h2, h3, p { margin-top: 0; }
+		h1 { max-width: 760px; margin: .7rem 0 1.2rem; font-size: clamp(2.6rem, 7vw, 5.3rem); line-height: 1.04; letter-spacing: -.065em; }
+		.hero p { max-width: 650px; color: var(--muted); font-size: clamp(1.05rem, 2.4vw, 1.25rem); }
+		.hero-contact { margin: 3rem 0 0; }
+		.actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+		.button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: .65rem 1.1rem; border: 1px solid var(--green); border-radius: 7px; background: var(--green); color: white; font-weight: 750; text-decoration: none; transition: background .2s, transform .2s; }
+		.button:hover { transform: translateY(-2px); background: var(--green-dark); }
+		.button.secondary { background: transparent; color: var(--green); }
+		.button.secondary:hover { background: #edf4e9; }
+		section { padding: 5.2rem 0; }
+		section + section { border-top: 1px solid var(--line); }
+		.section-heading { max-width: 650px; margin-bottom: 2rem; }
+		h2 { margin-bottom: .55rem; font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.15; letter-spacing: -.045em; }
+		.section-heading p, .muted { color: var(--muted); }
+		.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; }
+		.card { padding: 1.45rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+		.card h3 { margin: .55rem 0 .45rem; font-size: 1.2rem; letter-spacing: -.02em; }
+		.card p { color: var(--muted); font-size: .95rem; }
+		.number { color: var(--green); font-size: .8rem; font-weight: 800; letter-spacing: .12em; }
+		.tags { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+		.tags li { padding: .25rem .55rem; border-radius: 999px; background: #edf4e9; color: var(--green-dark); font-size: .78rem; font-weight: 700; }
+		.card-link { display: inline-block; margin-top: .5rem; font-size: .9rem; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+		.skills-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: start; }
+		.skill-group + .skill-group { margin-top: 1.5rem; }
+		.skill-group h3 { margin-bottom: .7rem; font-size: 1rem; }
+		.skill-group .tags { margin-top: 0; }
+		.example { padding: 1.35rem; border-left: 3px solid #9bbd72; border-radius: 0 9px 9px 0; background: #eef3e8; }
+		.example p:last-child { margin-bottom: 0; }
+		.cv-panel { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: clamp(1.5rem, 4vw, 2.5rem); border-radius: 14px; background: #173c30; color: white; }
+		.cv-panel h2 { margin-bottom: .5rem; }
+		.cv-panel p { max-width: 600px; margin-bottom: 0; color: #d6e5dc; }
+		.cv-panel .button { flex-shrink: 0; border-color: var(--lime); background: var(--lime); color: #173c30; }
+		.cv-panel .button:hover { background: #e6f4d0; }
+		.profiles { display: flex; flex-wrap: wrap; gap: .8rem; }
+		.profile-link { padding: .65rem .95rem; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); font-weight: 700; text-decoration: none; }
+		.profile-link:hover { border-color: var(--green); }
+		footer { padding: 1.5rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+		footer .wrap { display: flex; justify-content: space-between; gap: 1rem; }
+		@media (max-width: 760px) {
+			.grid { grid-template-columns: 1fr; }
+			.skills-layout { grid-template-columns: 1fr; }
+			.cv-panel { align-items: flex-start; flex-direction: column; }
+		}
+		@media (max-width: 520px) {
+			.wrap { width: min(100% - 1.5rem, 1100px); }
+			.nav { align-items: flex-start; flex-direction: column; padding: .8rem 0; gap: .45rem; }
+			nav { width: 100%; overflow-x: auto; }
+			nav ul { width: max-content; gap: 1rem; }
+			nav a { font-size: .84rem; }
+			section { padding: 3.8rem 0; }
+			footer .wrap { flex-direction: column; }
+		}
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+	</style>
+</head>
+<body>
+	<a class="skip-link" href="#main">Skip to content</a>
+	<header>
+		<div class="wrap nav">
+			<a class="brand" href="#home">Callum Drumm<span aria-hidden="true">.</span></a>
+			<nav aria-label="Main navigation">
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#projects">Projects</a></li>
+					<li><a href="#skills">Skills</a></li>
+					<li><a href="#cv">CV</a></li>
+					<li><a href="https://github.com/Caboom9000" target="_blank" rel="noreferrer">GitHub</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main id="main">
+		<section class="hero" id="home" aria-labelledby="intro-title">
+			<div class="wrap">
+				<p class="eyebrow">Computer Science · University of Dundee</p>
+				<h1 id="intro-title">Software engineering.<br>Built through curiosity.</h1>
+				<p>I’m a Computer Science student at the University of Dundee with a strong interest in programming, algorithms and software engineering. I’m seeking a 12-month industrial placement where I can contribute, learn from experienced engineers and develop my technical abilities.</p>
+				<div class="actions">
+					<a class="button" href="#projects">Explore my work</a>
+					<a class="button secondary" href="https://github.com/Caboom9000" target="_blank" rel="noreferrer">GitHub</a>
+				</div>
+				<p class="hero-contact"><strong>Contact me:</strong> <a href="mailto:callumdrumm6@gmail.com">callumdrumm6@gmail.com</a></p>
+			</div>
+		</section>
+
+		<section id="projects" aria-labelledby="projects-title">
+			<div class="wrap">
+				<div class="section-heading">
+					<p class="eyebrow">Selected work</p>
+					<h2 id="projects-title">Projects and problem-solving</h2>
+					<p>Projects demonstrating search algorithms, machine learning, game development and web publishing.</p>
+				</div>
+				<div class="grid">
+					<article class="card">
+						<span class="number">PROJECT 01</span>
+						<h3>Chess Search Algorithm</h3>
+						<p>Contributed to a search-based algorithm that evaluates possible moves from a chess game state to identify a strong move.</p>
+						<ul class="tags" aria-label="Technologies"><li>C++</li><li>Search algorithms</li><li>Problem-solving</li></ul>
+					</article>
+					<article class="card">
+						<span class="number">PROJECT 02</span>
+						<h3>Diabetes Risk Prediction</h3>
+						<p>Explored a machine-learning project that estimates diabetes risk using health-related factors and predictive modelling concepts.</p>
+						<ul class="tags" aria-label="Technologies"><li>Python</li><li>Machine learning</li><li>Data analysis</li></ul>
+					</article>
+					<article class="card">
+						<span class="number">PROJECT 03</span>
+						<h3>Godot Fishing Mini-Game</h3>
+						<p>Created a small fishing mini-game using Godot on a Raspberry Pi, exploring game structure, player interaction and application logic.</p>
+						<ul class="tags" aria-label="Technologies"><li>Godot</li><li>Raspberry Pi</li><li>Thonny</li></ul>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section id="skills" aria-labelledby="skills-title">
+			<div class="wrap">
+				<div class="section-heading">
+					<p class="eyebrow">What I bring</p>
+					<h2 id="skills-title">Technical and transferable skills</h2>
+					<p>Skills developed through university study, projects and customer-facing employment.</p>
+				</div>
+				<div class="skills-layout">
+					<div class="card">
+						<div class="skill-group">
+							<h3>Technical skills</h3>
+							<ul class="tags"><li>C</li><li>C++</li><li>Python</li><li>Java</li><li>HTML</li><li>Git &amp; GitHub</li><li>Godot</li><li>Algorithms</li><li>Machine learning</li><li>Raspberry Pi</li><li>Thonny</li></ul>
+						</div>
+						<div class="skill-group">
+							<h3>Transferable skills</h3>
+							<ul class="tags"><li>Communication</li><li>Teamwork</li><li>Problem-solving</li><li>Time management</li><li>Adaptability</li><li>Reliability</li></ul>
+						</div>
+					</div>
+					<aside class="example" aria-label="Example of transferable skills">
+						<p class="eyebrow">Skills in practice</p>
+						<p><strong>Teamwork and communication:</strong> My retail and hospitality experience requires me to communicate professionally with customers and colleagues, organise tasks and adapt quickly in busy environments.</p>
+						<p class="muted">This experience has strengthened my reliability, teamwork and ability to remain organised under pressure.</p>
+					</aside>
+				</div>
+			</div>
+		</section>
+
+		<section id="cv" aria-labelledby="cv-title">
+			<div class="wrap">
+				<div class="cv-panel">
+					<div>
+						<p class="eyebrow" style="color:#d7edb4">CV</p>
+						<h2 id="cv-title">Want to know more?</h2>
+						<p>Download my CV for details of my Computer Science degree, projects, technical skills and employment experience.</p>
+					</div>
+					<a class="button" href="cv.pdf" download>Download CV (PDF) ↓</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<div class="wrap">
+			<span>© <span id="year">2026</span> Callum Drumm</span>
+		</div>
+	</footer>
+	<script>
+		document.getElementById("year").textContent = new Date().getFullYear();
+	</script>
+</body>
+</html>
